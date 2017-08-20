@@ -1,10 +1,14 @@
--- CREATE TABLE Person(
--- 	PersonID int NOT NULL,
--- 	LastName varchar(50) NOT NULL,
--- 	FirstName varchar(50) NOT NULL,
--- 	EnrollmentDate date NULL,
---     PRIMARY KEY (PersonID)
--- );
+drop schema `testdb`;
+create schema `testdb`;
+use `testdb`;
+
+CREATE TABLE Person(
+	PersonID int NOT NULL,
+	LastName varchar(50) NOT NULL,
+	FirstName varchar(50) NOT NULL,
+	EnrollmentDate date NULL,
+    PRIMARY KEY (PersonID)
+);
 
 CREATE TABLE Course(
 	CourseID int NOT NULL,
@@ -17,7 +21,9 @@ CREATE TABLE Course(
 CREATE TABLE StudentCourses(
 	CourseID int NOT NULL,
 	StudentID int NOT NULL,
-    CONSTRAINT PK_StudentCourses PRIMARY KEY (CourseID,StudentID)
+    FOREIGN KEY (StudentID) REFERENCES Person(PersonID),
+    FOREIGN KEY (CourseID) REFERENCES Course(CourseID),
+  CONSTRAINT PK_StudentCourses PRIMARY KEY (CourseID,StudentID)
 );
 
 

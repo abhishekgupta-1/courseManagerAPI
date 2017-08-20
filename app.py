@@ -46,7 +46,9 @@ def view_student_profile(studentid):
 # def view_student_all_courses(studentid):
 #     conn = mysql.connect()
 #     cursor = conn.cursor()
+
     cursor.execute("Select Course.CourseID , Title, Credits from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
+
     data = cursor.fetchall()
     return jsonify({"name" : name , "data" : data})
 
@@ -56,11 +58,15 @@ def add_course(studentid, courseid):
     cursor = conn.cursor()
     # check whether the course exists
     try:
+        # cursor.execute("Select CourseID from StudentCourses where StudentID = %s AND CourseID = %s",
+        #                [studentid, courseid1])
+        # if cursor.rowcount == 0:
+        #     return jsonify({"response": "Course to add does not exist"})
         cursor.execute("INSERT INTO StudentCourses (CourseID, StudentID) VALUES (%s, %s)",[courseid, studentid])
         conn.commit()
     except:
-        return jsonify({"response": "Already registered for this course!"})
-    return jsonify({"response": "Added your course!"})
+        return jsonify({"response": "Cannot add the course!"})
+    return jsonify({"response": "Course addition successful."})
 
 @app.route('/<studentid>/<courseid1>/<courseid2>', methods=['PUT', 'POST'])
 def substitute_course(studentid, courseid1, courseid2):
@@ -75,7 +81,7 @@ def substitute_course(studentid, courseid1, courseid2):
         conn.commit()
     except:
         return jsonify({"response": "Cannot substitute!"})
-    return jsonify({"response": "Course substituted successfully"})
+    return jsonify({"response": "Course substitution successful."})
 
 if __name__ == "__main__":
     app.run(debug = True)

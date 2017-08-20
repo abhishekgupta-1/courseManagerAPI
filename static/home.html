@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>
+Student Information System
+</title>
+</head>
+<body>
+Student ID : <input type="text" id="s_id" placeholder="Enter Student ID" required>
+Password :	<input type="password" id="passwrd" placeholder="Enter password for updates" required>
+<br><br>	
+<input type="radio" id="add_r_button" onclick="upd_display()" name="task" value="add" checked> Add<br>
+<input type="radio" id="substi_r_button" onclick="upd_display()" name="task" value="substi"> Substitution<br>
+<input type="radio" id="view_r_button" onclick="upd_display()" name="task" value="view"> View
+
+<div id="add"> 
+Enter course no: 
+<input type="text" id="add_c_no" name="add_c_no"> 
+</div>
+
+<div id="substi">
+Enter old course no:
+<input type="text" id="substi_old_c_no" name="substi_old_c_no">
+Enter new course no:
+<input type="text" id="substi_new_c_no" name="substi_new_c_no">
+</div>
+
+<div id="view">
+<table id="view_table">
+<tr> 
+<th> Course Title </th>
+<th> Credits </th>
+</tr>
+</table>
+</div>
+<div id="status_div"></div>
+<button id="action_button" onclick="gen_api_call()">Send Request</button>
+<script src = "js_home.js"> </script>
+</body>
+</html>
