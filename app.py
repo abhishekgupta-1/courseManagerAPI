@@ -22,13 +22,13 @@ def hello():
     email=request.form['youremail']
     return render_template('form_action.html', name=name, email=email)
 
-@app.route('/student/', methods=['GET'])
-def view_all_students():
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute("Select * from Person")
-    data = cursor.fetchall()
-    return jsonify(data)
+# @app.route('/student/', methods=['GET'])
+# def view_all_students():
+#     conn = mysql.connect()
+#     cursor = conn.cursor()
+#     cursor.execute("Select * from Person")
+#     data = cursor.fetchall()
+#     return jsonify(data)
 
 @app.route('/<studentid>/', methods=['GET'])
 def view_student_profile(studentid):
@@ -42,7 +42,7 @@ def view_student_profile(studentid):
 def view_student_all_courses(studentid):
     conn = mysql.connect()
     cursor = conn.cursor()
-    cursor.execute("Select Title from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
+    cursor.execute("Select Course.CourseID , Title from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
     data = cursor.fetchall()
     return jsonify(data)
 
@@ -55,19 +55,23 @@ def add_course(studentid, courseid):
         cursor.execute("INSERT INTO StudentCourses (CourseID, StudentID) VALUES (%s, %s)",[courseid, studentid])
         conn.commit()
     except:
-        return jsonify("Already registered for this course!")
-    return jsonify("Added your course!")
+        return jsonify({"response": "Already registered for this course!"})
+    return jsonify({"response": "Added your course!"})
 
-@app.route('/<studentid>/substitute/<courseid1>/<courseid2>', methods=['PUT'])
+@app.route('/<studentid>/substitute/<courseid1>/<courseid2>', methods=['POST'])
 def substitute_course(studentid, courseid1, courseid2):
     conn = mysql.connect()
     cursor = conn.cursor()
     try:
+        cursor.execute("Select CourseID from StudentCourses where StudentID = %s AND CourseID = %s", [studentid, courseid1])
+        if cursor.rowcount == 0:
+            return jsonify({"response": "Course to substitute does not exist"})
+
         cursor.execute("Update StudentCourses set CourseID=%s where StudentID =  %s AND CourseID = %s",[courseid2, studentid, courseid1])
         conn.commit()
     except:
-        return "Cannot substitute"
-    return "Course substituted successfully"
+        return jsonify({"response": "Cannot substitute!"})
+    return jsonify({"response": "Course substituted successfully"})
 
 if __name__ == "__main__":
     app.run(debug = True)
