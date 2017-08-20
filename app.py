@@ -35,18 +35,17 @@ def view_student_profile(studentid):
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute("Select FirstName, LastName from Person where PersonID = %s", [studentid])
-    data = cursor.fetchone()
-    return jsonify(data)
-
-@app.route('/<studentid>/courses', methods=['GET'])
-def view_student_all_courses(studentid):
-    conn = mysql.connect()
-    cursor = conn.cursor()
+    name = cursor.fetchone()
+    # return jsonify(name)
+# @app.route('/<studentid>/courses', methods=['GET'])
+# def view_student_all_courses(studentid):
+#     conn = mysql.connect()
+#     cursor = conn.cursor()
     cursor.execute("Select Course.CourseID , Title from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
     data = cursor.fetchall()
-    return jsonify(data)
+    return jsonify({"name" : name , "data" : data})
 
-@app.route('/<studentid>/add/<courseid>', methods=['POST'])
+@app.route('/<studentid>/<courseid>', methods=['POST'])
 def add_course(studentid, courseid):
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -58,7 +57,7 @@ def add_course(studentid, courseid):
         return jsonify({"response": "Already registered for this course!"})
     return jsonify({"response": "Added your course!"})
 
-@app.route('/<studentid>/substitute/<courseid1>/<courseid2>', methods=['POST'])
+@app.route('/<studentid>/<courseid1>/<courseid2>', methods=['POST'])
 def substitute_course(studentid, courseid1, courseid2):
     conn = mysql.connect()
     cursor = conn.cursor()
