@@ -13,18 +13,32 @@ var div_list = [add_view, substi_view, view_view];
 
 var base_link = 'http://127.0.0.1:5000/'
 
-function upd_display(){
+var button_index = -1;
+//
+// function upd_display(){
+// 	var leng = div_list.length;
+// 	var i;
+// 	for (i=0;i<leng;i++)
+// 		div_list[i].style.display = 'none';
+// 	for (i=0;i<leng;i++){
+// 		if (button_list[i].checked)
+// 			div_list[i].style.display = 'block';
+// 	}
+// }
+
+
+function upd_display(thiss){
 	var leng = div_list.length;
 	var i;
 	for (i=0;i<leng;i++)
-		div_list[i].style.display = 'none';	
-	for (i=0;i<leng;i++){
-		if (button_list[i].checked)
-			div_list[i].style.display = 'block';
-	}
+		div_list[i].style.display = 'none';
+	for (i=0;i<leng;i++) {
+        if (thiss == button_list[i]) {
+            div_list[i].style.display = 'block';
+            button_index = i;
+        }
+    }
 }
-
-
 
 function add_api_call(){
 	var c_no = document.getElementById('add_c_no').value;
@@ -56,7 +70,10 @@ function substi_api_call(){
   xhttp.open("PUT", api_link, true);
   xhttp.send();
 }
-
+// function clear_status(){
+// 	var statusDiv= document.getElementById('status_div');
+// 	statusDiv.innerHTML = "";
+// }
 function view_api_call(){
 	var s_id = document.getElementById('s_id').value;
 	var api_link = base_link + String(s_id);
@@ -66,13 +83,17 @@ function view_api_call(){
      	var table_data = JSON.parse(this.responseText)
      	table_data = table_data.data;
      	console.log(table_data)
-     	var str = "";
+     	var str = "<tr>\n" +
+            "    <th>Course ID</th>\n" +
+            "<th> Course Title </th>\n" +
+            "<th> Credits </th>\n" +
+            "</tr>\n";
      	for (index in table_data){
      		row = table_data[index]
      		console.log(row);
      		str += "<tr><td>"+row[0] + "</td><td>" + row[1]+ "</td><td>" + row[2] + "</td></tr>";
      	}
-     	document.getElementById("view_table").innerHTML += str;
+     	document.getElementById("view_table").innerHTML = str;
     }
   };
   xhttp.open("GET", api_link, true);
@@ -80,13 +101,13 @@ function view_api_call(){
 }
 
 function gen_api_call(){
-	if (add_r_button.checked){
+	if (button_index == 0) {
 		add_api_call();
 	}
-	else if (substi_r_button.checked){
+	else if (button_index == 1){
 		substi_api_call();
 	}
-	else if (view_r_button.checked){
+	else if (button_index == 2){
 		view_api_call();
 	}
 }
