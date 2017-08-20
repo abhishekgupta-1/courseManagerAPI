@@ -36,12 +36,85 @@ function upd_display(thiss){
         if (thiss == button_list[i]) {
             div_list[i].style.display = 'block';
             button_index = i;
+            if (thiss == add_r_button)
+              populate_for_add();
+            else if (thiss == substi_r_button)
+              populate_for_substitution1();
         }
     }
 }
 
+function populate_for_add(){
+  var s_id = document.getElementById('s_id').value;
+  var api_link = "";
+  if (s_id == ""){
+    alert('Enter Student ID');
+    return
+  }
+  api_link = base_link + 'availablecourselist/' + String(s_id)
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var arr = JSON.parse(this.responseText)
+      var str = "";
+      for (index in arr){
+        item = arr[index];
+        str += '<option value = "' + item[0] + '">' + item[1] + "</option>"
+      }
+      document.getElementById('add_c_no').innerHTML = str;
+    }
+  };
+  xhttp.open("GET", api_link, true);
+  xhttp.send();
+}
+
+function populate_for_substitution1(){
+  var s_id = document.getElementById('s_id').value;
+  var api_link = "";
+  if (s_id == ""){
+    alert('Enter Student ID');
+    return
+  }
+  api_link = base_link + 'availablecourselist/' + String(s_id)
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var arr = JSON.parse(this.responseText)
+      var str = "";
+      for (index in arr){
+        item = arr[index];
+        str += '<option value = "' + item[0] + '">' + item[1] + "</option>"
+      }
+      document.getElementById('substi_new_c_no').innerHTML = str;
+      populate_for_substitution2();
+    }
+  };
+  xhttp.open("GET", api_link, true);
+  xhttp.send();
+}
+
+function populate_for_substitution2(){
+  var s_id = document.getElementById('s_id').value;
+  var api_link = base_link + 'unavailablecourselist/' + String(s_id)
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var arr = JSON.parse(this.responseText)
+      var str = "";
+      for (index in arr){
+        item = arr[index];
+        str += '<option value = "' + item[0] + '">' + item[1] + "</option>"
+      }
+      document.getElementById('substi_old_c_no').innerHTML = str;
+    }
+  };
+  xhttp.open("GET", api_link, true);
+  xhttp.send();
+}
+
 function add_api_call(){
-	var c_no = document.getElementById('add_c_no').value;
+  var e = document.getElementById("add_c_no");
+  var c_no = e.options[e.selectedIndex].value;
 	var s_id = document.getElementById('s_id').value;
 	var passwd = document.getElementById('passwrd').value;
 	var api_link = base_link + String(s_id) + "/" + String(c_no);
@@ -56,8 +129,10 @@ function add_api_call(){
 }
 
 function substi_api_call(){
-	var old_c_no = document.getElementById('substi_old_c_no').value;
-	var new_c_no = document.getElementById('substi_new_c_no').value;
+  var e = document.getElementById("substi_old_c_no");
+  var old_c_no = e.options[e.selectedIndex].value;
+  e = document.getElementById("substi_new_c_no");
+  var new_c_no = e.options[e.selectedIndex].value;
 	var s_id = document.getElementById('s_id').value;
 	var passwd = document.getElementById('passwrd').value;
 	var api_link = base_link + String(s_id) + "/" + String(old_c_no) + "/" + String(new_c_no);

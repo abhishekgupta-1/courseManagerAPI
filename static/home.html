@@ -41,7 +41,8 @@
 
 <div id="add" display = "none" class = "form-inline">
     <label for="add_c_no"> Enter course no: </label>
-    <input class = "form-control" type="text" id="add_c_no" name="add_c_no" placeholder = "Enter valid course number">
+    <select class = "form-control" type="text" id="add_c_no" name="add_c_no">
+    </select>
       &nbsp;
     <button  class = "btn btn-primary btn-lg" id="add_action_button" onclick="gen_api_call()">Add New Course</button>
 </div>
@@ -49,10 +50,12 @@
 <div id="substi" display = "none"class = "form-inline">
 
     <label for="substi_old_c_no"> Enter course no: </label>
-    <input class = "form-control" type="text" id="substi_old_c_no" name="substi_old_c_no" placeholder = "Enter valid course number">
+    <select class = "form-control" type="text" id="substi_old_c_no" name="substi_old_c_no">
+    </select>
       &nbsp;
     <label for="substi_new_c_no"> Enter new course no:</label>
-    <input class = "form-control" type="text" id="substi_new_c_no" name="substi_new_c_no" placeholder="Enter valid course number">
+    <select class = "form-control" type="text" id="substi_new_c_no" name="substi_new_c_no">
+    </select>
       &nbsp;
     <button  class = "btn btn-primary btn-lg" id="substi_action_button" onclick="gen_api_call()">Substitute Course</button>
 

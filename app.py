@@ -83,5 +83,41 @@ def substitute_course(studentid, courseid1, courseid2):
         return jsonify({"response": "Cannot substitute!"})
     return jsonify({"response": "Course substitution successful."})
 
+@app.route('/availablecourselist/', methods=['GET'])
+def all_courses():
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("Select CourseID, Title from Course");
+        results = cursor.fetchall()
+        return jsonify(results)
+    except:
+        return jsonify({"response": "Cannot get list !"})
+
+
+
+@app.route('/availablecourselist/<int:studentID>', methods=['GET'])
+def unregistered_course(studentID):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("Select CourseID, Title from Course where CourseID not in (Select CourseID from StudentCourses where StudentID = {})".format(studentID))
+        results = cursor.fetchall()
+        return jsonify(results)
+    except:
+        return jsonify({"response": "Cannot get list!"})
+
+@app.route('/unavailablecourselist/<int:studentID>', methods=['GET'])
+def unavailablecourselist(studentID):
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("Select CourseID, Title from Course where CourseID in (Select CourseID from StudentCourses where StudentID = {})".format(studentID))
+        results = cursor.fetchall()
+        return jsonify(results)
+    except:
+        return jsonify({"response": "Cannot get list!"})
+
+
 if __name__ == "__main__":
     app.run(debug = True)
