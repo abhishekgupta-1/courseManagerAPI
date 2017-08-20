@@ -1,12 +1,17 @@
-from flask import Flask, render_template, jsonify, request, url_for
+from flask import Flask, render_template, jsonify, request, url_for, send_from_directory
 from flaskext.mysql import MySQL
 app =Flask(__name__)
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'testuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-app.config['MYSQL_DATABASE_DB'] = 'testdb'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Satishneena.1'
+app.config['MYSQL_DATABASE_DB'] = 'cloud'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
+
+@app.route('/app/<path:link>')
+def static_serve(link):
+    return send_from_directory('static', link)
+
 
 # Define a route for the default URL, which loads the form
 @app.route('/')
@@ -41,11 +46,11 @@ def view_student_profile(studentid):
 # def view_student_all_courses(studentid):
 #     conn = mysql.connect()
 #     cursor = conn.cursor()
-    cursor.execute("Select Course.CourseID , Title from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
+    cursor.execute("Select Course.CourseID , Title, Credits from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
     data = cursor.fetchall()
     return jsonify({"name" : name , "data" : data})
 
-@app.route('/<studentid>/<courseid>', methods=['POST'])
+@app.route('/<studentid>/<courseid>', methods=['PUT', 'POST'])
 def add_course(studentid, courseid):
     conn = mysql.connect()
     cursor = conn.cursor()
@@ -57,7 +62,7 @@ def add_course(studentid, courseid):
         return jsonify({"response": "Already registered for this course!"})
     return jsonify({"response": "Added your course!"})
 
-@app.route('/<studentid>/<courseid1>/<courseid2>', methods=['POST'])
+@app.route('/<studentid>/<courseid1>/<courseid2>', methods=['PUT', 'POST'])
 def substitute_course(studentid, courseid1, courseid2):
     conn = mysql.connect()
     cursor = conn.cursor()
