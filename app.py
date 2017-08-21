@@ -1,16 +1,15 @@
 from flask import Flask, render_template, jsonify, request, url_for, send_from_directory
 from flaskext.mysql import MySQL
+from werkzeug.contrib.cache import SimpleCache
+
+cache = SimpleCache()
 app =Flask(__name__)
 mysql = MySQL()
-# app.config['MYSQL_DATABASE_USER'] = 'testuser'
-# app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-# app.config['MYSQL_DATABASE_DB'] = 'testdb'
-# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Satishneena.1'
-app.config['MYSQL_DATABASE_DB'] = 'cloud'
+app.config['MYSQL_DATABASE_USER'] = 'testuser'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_DB'] = 'testdb'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
 
 mysql.init_app(app)
 
@@ -43,20 +42,29 @@ def hello():
 
 @app.route('/<studentid>/', methods=['GET'])
 def view_student_profile(studentid):
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute("Select FirstName, LastName from Person where PersonID = %s", [studentid])
-    name = cursor.fetchone()
+	nocache = False
+	try:
+		if (request.args.get('nocache') == unicode(1))	:
+			nocache = True
+	except:
+		raise
+	if nocache==False and cache.get('data'+str(studentid)):
+		return jsonify(cache.get('data'+str(studentid)))
+	conn = mysql.connect()
+	cursor = conn.cursor()
+	cursor.execute("Select FirstName, LastName from Person where PersonID = %s", [studentid])
+	name = cursor.fetchone()
     # return jsonify(name)
 # @app.route('/<studentid>/courses', methods=['GET'])
 # def view_student_all_courses(studentid):
 #     conn = mysql.connect()
 #     cursor = conn.cursor()
 
-    cursor.execute("Select Course.CourseID , Title, Credits from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
-
-    data = cursor.fetchall()
-    return jsonify({"name" : name , "data" : data})
+	cursor.execute("Select Course.CourseID , Title, Credits from Course, StudentCourses where StudentID = %s and Course.CourseID = StudentCourses.CourseID", [studentid])
+	data = cursor.fetchall()
+	data = ({"name" : name, "data" : data})
+	cache.set('data'+str(studentid), data, timeout = 5*60)
+	return jsonify(data)
 
 @app.route('/<studentid>/<courseid>', methods=['PUT', 'POST'])
 def add_course(studentid, courseid):
