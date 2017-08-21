@@ -7,6 +7,7 @@ CREATE TABLE Person(
 	LastName varchar(50) NOT NULL,
 	FirstName varchar(50) NOT NULL,
 	EnrollmentDate date NULL,
+	Password varchar(50) NOT NULL,
     PRIMARY KEY (PersonID)
 );
 
@@ -213,3 +214,5 @@ INSERT INTO StudentCourses (CourseID, StudentID)
 VALUES (1050, 30);
 INSERT INTO StudentCourses (CourseID, StudentID)
 VALUES (1061, 30);
+
+update Person set Password = 'a';

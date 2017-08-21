@@ -124,8 +124,9 @@ function add_api_call(){
      	status_div.innerHTML = JSON.parse(this.responseText).response;
     }
   };
-  xhttp.open("PUT", api_link, true);
-  xhttp.send();
+  xhttp.open("POST", api_link, true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhttp.send(encodeURI("passwd="+ passwd))
 }
 
 function substi_api_call(){
@@ -142,8 +143,9 @@ function substi_api_call(){
      	status_div.innerHTML = JSON.parse(this.responseText).response;
     }
   };
-  xhttp.open("PUT", api_link, true);
-  xhttp.send();
+  xhttp.open("POST", api_link, true);
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhttp.send(encodeURI("passwd="+ passwd))
 }
 // function clear_status(){
 // 	var statusDiv= document.getElementById('status_div');
