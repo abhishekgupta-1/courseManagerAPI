@@ -5,9 +5,9 @@ from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app =Flask(__name__)
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'testuser'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-app.config['MYSQL_DATABASE_DB'] = 'testdb'
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'Satishneena.1'
+app.config['MYSQL_DATABASE_DB'] = 'cloud'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 
@@ -15,7 +15,7 @@ mysql.init_app(app)
 
 @app.route('/app/<path:link>')
 def static_serve(link):
-    return send_from_directory('static', link)
+    return render_template(link)
 
 
 # Define a route for the default URL, which loads the form
@@ -147,4 +147,4 @@ def unavailablecourselist(studentID):
 
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(host = "0.0.0.0", port = 5000)

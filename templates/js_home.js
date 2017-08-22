@@ -11,7 +11,7 @@ var status_div = document.getElementById('status_div')
 var button_list = [add_r_button, substi_r_button, view_r_button];
 var div_list = [add_view, substi_view, view_view];
 
-var base_link = 'http://127.0.0.1:5000/'
+var base_link = "/";
 
 var button_index = -1;
 //
@@ -153,7 +153,8 @@ function substi_api_call(){
 // }
 function view_api_call(){
 	var s_id = document.getElementById('s_id').value;
-	var api_link = base_link + String(s_id);
+	// var api_link = base_link + String(s_id) + '?nocache=1';
+  var api_link = base_link + String(s_id);
 	var xhttp = new XMLHttpRequest();
   	xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
