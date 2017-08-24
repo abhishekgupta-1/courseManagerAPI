@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <title>Student Information System</title>
+    <link rel = "stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="jumbotron">
+      <h2>Student Information System</h2>
+
+<br><br>
+<form class="form-inline">
+    <div class="form-group">
+        <label for ="s_id"> Student ID :</label>
+        <input type="text" class="form-control" id="s_id" placeholder="Enter Student ID" required>
+    </div>
+    &nbsp;
+    <div class="form-group">
+        <label for="passwrd">Password :</label>
+        <input type="password" class="form-control" id="passwrd" placeholder="Enter password" required>
+    </div>
+</form>
+
+<br><br>
+<div class=""btn-group">
+      <button type="button" class = "btn btn-primary"  id="add_r_button" onclick="upd_display(this);document.getElementById('status_div').innerHTML=''" name="task" value="add"> Add </button>
+      &nbsp;
+      <button type="button" class = "btn btn-primary"  id="substi_r_button" onclick="upd_display(this);document.getElementById('status_div').innerHTML=''" name="task" value="substi"> Substitute </button>
+      &nbsp;
+      <button type="button" class = "btn btn-primary"  id="view_r_button" onclick="upd_display(this); view_api_call()" name="task" value="view"> View </button>
+</div>
+<!--<input type="radio" id="add_r_button" onclick="upd_display()" name="task" value="add" checked> Add<br>-->
+<!--<input type="radio" id="substi_r_button" onclick="upd_display()" name="task" value="substi"> Substitution<br>-->
+<!--<input type="radio" id="view_r_button" onclick="upd_display()" name="task" value="view"> View-->
+<br>
+
+<div id="add" display = "none" class = "form-inline">
+    <label for="add_c_no"> Enter course no: </label>
+    <select class = "form-control" type="text" id="add_c_no" name="add_c_no">
+    </select>
+      &nbsp;
+    <button  class = "btn btn-primary btn-lg" id="add_action_button" onclick="gen_api_call()">Add New Course</button>
+</div>
+
+<div id="substi" display = "none"class = "form-inline">
+
+    <label for="substi_old_c_no"> Enter course no: </label>
+    <select class = "form-control" type="text" id="substi_old_c_no" name="substi_old_c_no">
+    </select>
+      &nbsp;
+    <label for="substi_new_c_no"> Enter new course no:</label>
+    <select class = "form-control" type="text" id="substi_new_c_no" name="substi_new_c_no">
+    </select>
+      &nbsp;
+    <button  class = "btn btn-primary btn-lg" id="substi_action_button" onclick="gen_api_call()">Substitute Course</button>
+
+</div>
+
+<div id="view" display = "none">
+<table class = "table table-hover" id="view_table">
+</table>
+</div>
+<div id="status_div"></div>
+
+    <br>
+
+<script src = "js_home.js"> </script>
+</div>
+</div>
+</body>
+</html>
