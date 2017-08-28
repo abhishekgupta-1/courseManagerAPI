@@ -31,74 +31,74 @@ CREATE TABLE StudentCourses(
 
 
 
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (1, 'Abercrombie', 'Kim', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (2, 'Barzdukas', 'Gytis', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (3, 'Justice', 'Peggy', '2001-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (4, 'Fakhouri', 'Fadi', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (5, 'Harui', 'Roger', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (6, 'Li', 'Yan', '2002-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (7, 'Norman', 'Laura', '2003-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (8, 'Olivotto', 'Nino', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (9, 'Tang', 'Wayne', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (10, 'Alonso', 'Meredith', '2002-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (11, 'Lopez', 'Sophia', '2004-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (12, 'Browning', 'Meredith', '2000-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (13, 'Anand', 'Arturo', '2003-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (14, 'Walker', 'Alexandra', '2000-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (15, 'Powell', 'Carson', '2004-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (16, 'Jai', 'Damien', '2001-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (17, 'Carlson', 'Robyn', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (18, 'Zheng', 'Roger', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (19, 'Bryant', 'Carson', '2001-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (20, 'Suarez', 'Robyn', '2004-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (21, 'Holt', 'Roger', '2004-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (22, 'Alexander', 'Carson', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (23, 'Morgan', 'Isaiah', '2001-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (24, 'Martin', 'Randall', '2005-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (25, 'Kapoor', 'Candace', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (26, 'Rogers', 'Cody', '2002-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (27, 'Serrano', 'Stacy', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (28, 'White', 'Anthony', '2001-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (29, 'Griffin', 'Rachel', '2004-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (30, 'Shan', 'Alicia', '2003-09-01');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (31, 'Stewart', 'Jasmine', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (32, 'Xu', 'Kristen', null);
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (33, 'Gao', 'Erica', '2003-01-30');
-INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate)
-VALUES (34, 'Van Houten', 'Roger', null);
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (1, 'Abercrombie', 'Kim', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (2, 'Barzdukas', 'Gytis', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (3, 'Justice', 'Peggy', '2001-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (4, 'Fakhouri', 'Fadi', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (5, 'Harui', 'Roger', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (6, 'Li', 'Yan', '2002-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (7, 'Norman', 'Laura', '2003-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (8, 'Olivotto', 'Nino', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (9, 'Tang', 'Wayne', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (10, 'Alonso', 'Meredith', '2002-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (11, 'Lopez', 'Sophia', '2004-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (12, 'Browning', 'Meredith', '2000-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (13, 'Anand', 'Arturo', '2003-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (14, 'Walker', 'Alexandra', '2000-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (15, 'Powell', 'Carson', '2004-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (16, 'Jai', 'Damien', '2001-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (17, 'Carlson', 'Robyn', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (18, 'Zheng', 'Roger', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (19, 'Bryant', 'Carson', '2001-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (20, 'Suarez', 'Robyn', '2004-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (21, 'Holt', 'Roger', '2004-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (22, 'Alexander', 'Carson', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (23, 'Morgan', 'Isaiah', '2001-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (24, 'Martin', 'Randall', '2005-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (25, 'Kapoor', 'Candace', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (26, 'Rogers', 'Cody', '2002-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (27, 'Serrano', 'Stacy', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (28, 'White', 'Anthony', '2001-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (29, 'Griffin', 'Rachel', '2004-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (30, 'Shan', 'Alicia', '2003-09-01', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (31, 'Stewart', 'Jasmine', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (32, 'Xu', 'Kristen', null, 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (33, 'Gao', 'Erica', '2003-01-30', 'xyz123');
+INSERT INTO Person (PersonID, LastName, FirstName, EnrollmentDate, Password)
+VALUES (34, 'Van Houten', 'Roger', null, 'xyz123');
 
 
 
