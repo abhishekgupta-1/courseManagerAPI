@@ -5,9 +5,9 @@ from werkzeug.contrib.cache import SimpleCache
 cache = SimpleCache()
 app =Flask(__name__)
 mysql = MySQL()
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Satishneena.1'
-app.config['MYSQL_DATABASE_DB'] = 'cloud'
+app.config['MYSQL_DATABASE_USER'] = 'testuser'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+app.config['MYSQL_DATABASE_DB'] = 'testdb'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 

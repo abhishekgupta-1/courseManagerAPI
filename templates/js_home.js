@@ -153,8 +153,8 @@ function substi_api_call(){
 // }
 function view_api_call(){
 	var s_id = document.getElementById('s_id').value;
-	// var api_link = base_link + String(s_id) + '?nocache=1';
-  var api_link = base_link + String(s_id);
+	 var api_link = base_link + String(s_id) + '?nocache=1';
+  //var api_link = base_link + String(s_id);
 	var xhttp = new XMLHttpRequest();
   	xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

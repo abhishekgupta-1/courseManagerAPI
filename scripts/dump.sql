@@ -1,4 +1,4 @@
-drop schema `testdb`;
+drop schema if exists `testdb`;
 create schema `testdb`;
 use `testdb`;
 
@@ -215,4 +215,3 @@ VALUES (1050, 30);
 INSERT INTO StudentCourses (CourseID, StudentID)
 VALUES (1061, 30);
 
-update Person set Password = 'a';
